@@ -18,3 +18,10 @@ Browsers enforce CORS, but servers and proxies often need to validate or simulat
 ## Awkward edge
 
 The `null` origin is valid and matches only the literal `null` allow-origin (or `*`). Do not treat it as an empty string.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
